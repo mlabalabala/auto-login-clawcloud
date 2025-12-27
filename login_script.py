@@ -93,7 +93,7 @@ def run_login():
 
         # 5. 【核心】处理 2FA 双重验证 (解决异地登录拦截)
         # 给页面一点时间跳转
-        page.wait_for_timeout(3000)
+        page.wait_for_timeout(10000)
         
         # 检查 URL 是否包含 two-factor 或页面是否有验证码输入框
         if "two-factor" in page.url or page.locator("#app_totp").count() > 0:
@@ -121,7 +121,7 @@ def run_login():
 
         # 6. 处理授权确认页 (Authorize App)
         # 第一次登录可能会出现
-        page.wait_for_timeout(3000)
+        page.wait_for_timeout(10000)
         if "authorize" in page.url.lower():
             print("⚠️ 检测到授权请求，尝试点击 Authorize...")
             try:
@@ -130,9 +130,9 @@ def run_login():
                 pass
 
         # 7. 等待最终跳转结果
-        print("⏳ [Step 6] 等待跳转回 ClawCloud 控制台 (约20秒)...")
+        print("⏳ [Step 6] 等待跳转回 ClawCloud 控制台 (约30秒)...")
         # 强制等待较长时间，确保页面完全重定向
-        page.wait_for_timeout(20000)
+        page.wait_for_timeout(30000)
         
         final_url = page.url
         print(f"📍 最终页面 URL: {final_url}")
