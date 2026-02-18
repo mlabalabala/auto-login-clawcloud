@@ -128,7 +128,7 @@ def run_login():
         # 7. 等待最终跳转结果
         print("⏳ [Step 6] 等待跳转回 ClawCloud 控制台 (约30秒)...")
         # 强制等待较长时间，确保页面完全重定向
-        page.wait_for_timeout(30000)
+        page.wait_for_timeout(1000)
         
         final_url = page.url
         print(f"📍 最终页面 URL: {final_url}")
